@@ -5,10 +5,6 @@ if len(sys.argv) < 2:
     print('File name not found, please use it as argument')
     exit()
     
-if sys.argv[1] == 'help':
-    print('To open file, please use it as first argument')
-    exit()
-
 dictionary = {}
 try:
     with open(sys.argv[1], "r", encoding='utf-8') as f:
@@ -19,7 +15,7 @@ try:
                     dictionary[word] = []
                 dictionary[word].append(l[0])
 except IOError as e:
-    print(e)
+    print(e, file=sys.stderr)
     exit()
     
 try:
@@ -29,4 +25,4 @@ try:
             words = str(t[1]).strip("[]").replace("'","")
             f.write(f'{t[0]} - {words}\n')
 except IOError as e:
-    print(e)
+    print(e, file=sys.stderr)
